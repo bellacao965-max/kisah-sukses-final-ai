@@ -1,0 +1,18 @@
+[Unit]
+Description=KisahSukses AI Proxy Server
+After=network.target
+
+[Service]
+Type=simple
+User=node
+WorkingDirectory=/opt/kisahsukses-ai/server
+Environment="OPENAI_API_KEY=sk-yourkey"
+Environment="BASIC_AUTH_USER=admin"
+Environment="BASIC_AUTH_PASS=s3cret"
+Environment="API_KEY=supersecretkey123"
+Environment="ALLOWED_ORIGIN=http://localhost:5173"
+ExecStart=/usr/bin/node /opt/kisahsukses-ai/server/server.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

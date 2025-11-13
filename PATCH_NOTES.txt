@@ -1,0 +1,48 @@
+PATCH NOTES - KisahSuksesApp_Canggih_Final Secure Edition
+==========================================================
+
+🔒 SECURITY IMPROVEMENTS
+-------------------------
+1. Added **CORS** (controlled via ALLOWED_ORIGIN env var)
+2. Added **dual authentication** (Basic Auth or x-api-key)
+3. Enhanced **rate limiting** (30 req/min per IP)
+4. Sanitized input, better error responses
+5. Added Dockerfile + systemd service for production deployment
+
+🧠 AUTHENTICATION
+-----------------
+Option 1: Basic Auth
+  export BASIC_AUTH_USER="admin"
+  export BASIC_AUTH_PASS="s3cret"
+
+Option 2: API Key (recommended for integration)
+  export API_KEY="supersecretkey123"
+  Then send requests with header: x-api-key: supersecretkey123
+
+🌐 CORS CONFIG
+--------------
+Allow only specific frontend:
+  export ALLOWED_ORIGIN="http://localhost:5173"
+
+🐳 DOCKER DEPLOYMENT
+--------------------
+Build and run container:
+  docker build -t kisahsukses-ai-proxy .
+  docker run -d -p 3000:3000 --env-file .env kisahsukses-ai-proxy
+
+⚙️ SYSTEMD DEPLOYMENT
+---------------------
+1. Copy `kisahsukses-ai.service` to `/etc/systemd/system/`
+2. Adjust WorkingDirectory and Environment vars
+3. Run:
+   sudo systemctl daemon-reload
+   sudo systemctl enable kisahsukses-ai
+   sudo systemctl start kisahsukses-ai
+
+📦 CHANGED FILES
+----------------
+- server/server.js
+- server/package.json
+- server/Dockerfile
+- server/kisahsukses-ai.service
+- server/PATCH_NOTES.txt
