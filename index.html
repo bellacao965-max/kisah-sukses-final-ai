@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html\1 lang=\"id\">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kisah Sukses — Cerita Inspiratif</title>
+  <meta name="description" content="Kumpulan kisah sukses singkat dan inspiratif. Tambah, cari, dan simpan favoritmu.">
+  <meta name="robots" content="index,follow">
+  <!-- GANTI DOMAIN_INI dengan domain sebenarnya sebelum deploy -->
+  <link rel="canonical" href="https://kisahsukses.app/">
+  <meta property="og:title" content="Kisah Sukses — Cerita Inspiratif">
+  <meta property="og:description" content="Kumpulan kisah sukses singkat dan inspiratif.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kisahsukses.app/">
+  <meta property="og:image" content="https://kisahsukses.app/og-image.png">
+  <meta name="theme-color" content="#ff7a00">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="favicon-64.png" sizes="64x64">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "Kisah Sukses",
+        "url": "https://kisahsukses.app/",
+        "description": "Kumpulan kisah sukses singkat dan inspiratif."
+      }
+    ]
+  }
+  </script>
+  <script src="youtube-config.js"></script>
+  <script defer src="script.js"></script>
+
+  <!-- Firebase SDK (optional): Uncomment and provide firebase-config.js with FIREBASE_CONFIG to enable sync -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script> -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script> -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script> -->
+  <!-- After adding firebase-config.js (with FIREBASE_CONFIG), include initialization code in firebase-init.js -->
+  <!-- FIREBASE_SDK_NOTES_INCLUDED -->
+    
+
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --text:#111; --muted:#555; --accent:#2563eb;
+}
+[data-theme="dark"]{
+  --bg:#0b1220; --card:#0f1724; --text:#e6eef8; --muted:#9fb0d9; --accent:#60a5fa;
+}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;transition:background .3s,color .3s;}
+.header{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,0.04);border-radius:8px;margin:12px auto;max-width:1100px;}
+.btn{background:var(--accent);color:white;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;transition:transform .12s ease;box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.btn:active{transform:translateY(1px) scale(.997);}
+.chat-message.ai{background:rgba(0,0,0,0.04);padding:6px 8px;border-radius:6px;margin:6px 0;transition:transform .12s ease,opacity .12s;}
+.chat-message.user{background:var(--accent);color:white;padding:6px 8px;border-radius:6px;margin:6px 0;align-self:flex-end;}
+.fade-in{animation:fadeIn .25s ease both;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+/* dark-mode toggle layout */
+.theme-toggle{display:flex;gap:8px;align-items:center;}
+</style>
+
+</head>
+<body>
+
+<header class="header">
+  <div><h1 style="margin:0;">KisahSuksesApp — Canggih</h1></div>
+  <div class="theme-toggle">
+    <label for="themeSwitch" style="margin-right:8px;">Dark mode</label>
+    <button id="themeSwitch" class="btn" aria-pressed="false">Toggle</button>
+  </div>
+</header>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <h1>Kisah Sukses</h1>
+      <p class="tagline">Cerita singkat yang menginspirasi — tambah, baca, dan simpan favoritmu.</p>
+      <div class="header-actions">
+        <button id="export-btn" title="Ekspor semua kisah">Ekspor</button>
+        <input id="import-file" type="file" accept="application/json" style="display:none">
+        <button id="import-btn" title="Impor kisah dari file">Impor</button>
+        <button id="signin-btn" title="Sign in (optional)">Masuk</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <section aria-labelledby="form-title" class="form-section">
+      <h2 id="form-title">Tambah / Edit Kisah</h2>
+      <form id="story-form" aria-describedby="form-desc">
+        <input type="hidden" id="editing-id" value="">
+        <p id="form-desc">Tulis judul, tag, dan isi singkat kisahmu. Kamu bisa menambahkan gambar kecil (opsional).</p>
+        <label for="title">Judul</label>
+        <input id="title" name="title" type="text" required aria-required="true" maxlength="120">
+        <label for="author">Penulis</label>
+        <input id="author" name="author" type="text" maxlength="60">
+        <label for="tags">Tag (pisah dengan koma)</label>
+        <input id="tags" name="tags" type="text" placeholder="kegigihan, bisnis">
+        <label for="image">Gambar kecil (opsional, max 150KB)</label>
+        <input id="image" name="image" type="file" accept="image/*">
+        <label for="content">Cerita (Markdown ringan didukung)</label>
+        <label for="media-url">Media URL (YouTube link, opsional)</label>
+        <input id="media-url" name="media-url" type="url" placeholder="https://www.youtube.com/watch?v=...">
+    
+        <textarea id="content" name="content" rows="6" required aria-required="true" maxlength="5000"></textarea>
+        <div class="form-actions">
+          <button id="add-btn" type="submit">Simpan</button>
+          <button id="cancel-edit-btn" type="button" style="display:none">Batal</button>
+          <button id="clear-btn" type="button">Bersihkan</button>
+        </div>
+        <div id="form-feedback" role="status" aria-live="polite" class="feedback"></div>
+      </form>
+    </section>
+
+    <section class="controls" aria-label="Kontrol pencarian dan filter">
+      <input id="search" type="search" placeholder="Cari judul, isi, tag..." aria-label="Cari kisah">
+      <select id="sort" aria-label="Urutkan">
+        <option value="newest">Terbaru</option>
+        <option value="oldest">Terlama</option>
+        <option value="title">Judul A–Z</option>
+      </select>
+      <label><input id="favoritesOnly" type="checkbox"> Tampilkan hanya favorit</label>
+      <label>Per halaman: <select id="perPage"><option>5</option><option selected>10</option><option>20</option></select></label>
+    </section>
+
+
+    <section id="youtube-search-section" class="youtube-search container" aria-label="Cari YouTube" style="margin-top:1rem">
+      <h3>Cari Video YouTube</h3>
+      <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
+        <input id="yt-query" type="search" placeholder="Cari misal: kisah sukses wirausaha" aria-label="Cari YouTube">
+        <button id="yt-search-btn" type="button">Cari YouTube</button>
+        <small id="yt-note" style="color:var(--muted)">Gunakan API YouTube (opsional) untuk hasil otomatis; atau tempelkan URL video di form.</small>
+      </div>
+      <div id="yt-results" style="margin-top:0.75rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.75rem"></div>
+    </section>
+    
+    <section id="stories" aria-live="polite" aria-label="Daftar kisah">
+      <!-- Daftar kisah akan dirender di sini -->
+    </section>
+
+    <nav class="pagination" aria-label="Navigasi halaman" id="pagination" style="display:none"></nav>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Kisah Sukses — Semua hak dilindungi.</p>
+      <nav aria-label="Footer">
+        <a href="/sitemap.xml">Sitemap</a> · <a href="/robots.txt">Robots</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Firebase optional integration: letakkan konfigurasi di file firebase-config.js jika mau sinkronisasi -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').catch(function(err){console.warn('SW gagal terdaftar:', err)});
+    }
+  </script>
+
+<!-- AI Chat UI (added) -->
+
+<section id="ai-advanced" style="max-width:700px;margin:12px auto;padding:12px;">
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+    <button id="btn-summarize" type="button">✨ Ringkas Teks</button>
+    <button id="btn-analyze-code" type="button">💡 Analisis Kode</button>
+    <button id="btn-suggest-design" type="button">🧠 Saran Desain</button>
+  </div>
+  <div style="display:flex;gap:8px;">
+    <textarea id="ai-advanced-input" placeholder="Tempel teks atau kode di sini..." style="flex:1;height:120px;padding:8px;"></textarea>
+    <div style="width:220px;">
+      <div style="margin-bottom:8px;"><strong>Hasil:</strong></div>
+      <div id="ai-advanced-output" style="height:120px;overflow:auto;padding:8px;border:1px solid #ddd;background:#fff;"></div>
+    </div>
+  </div>
+</section>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const inpt = document.getElementById('ai-advanced-input');
+  const out = document.getElementById('ai-advanced-output');
+  document.getElementById('btn-summarize')?.addEventListener('click', async ()=>{
+    const txt = inpt.value.trim(); if(!txt){ out.innerText='Masukkan teks dulu.'; return; }
+    out.innerText = 'Sedang meringkas...';
+    try{ const r = await window.ai.summarizeText(txt); out.innerText = r; }catch(e){ out.innerText = 'Error: '+e.message; }
+  });
+  document.getElementById('btn-analyze-code')?.addEventListener('click', async ()=>{
+    const txt = inpt.value.trim(); if(!txt){ out.innerText='Tempel kode dulu.'; return; }
+    out.innerText = 'Sedang menganalisis kode...';
+    try{ const r = await window.ai.analyzeCode(txt); out.innerText = r; }catch(e){ out.innerText = 'Error: '+e.message; }
+  });
+  document.getElementById('btn-suggest-design')?.addEventListener('click', async ()=>{
+    const txt = inpt.value.trim(); if(!txt){ out.innerText='Masukkan catatan desain dulu.'; return; }
+    out.innerText = 'Membuat saran desain...';
+    try{ const r = await window.ai.suggestDesign(txt); out.innerText = r; }catch(e){ out.innerText = 'Error: '+e.message; }
+  });
+});
+</script>
+
+<section id="ai-section" style="max-width:700px;margin:24px auto;padding:16px;border:1px solid #eee;border-radius:8px;">
+  <h2>Asisten Cerdas — Fitur AI</h2>
+  <p>Gunakan fitur AI untuk menganalisis konten, buat ringkasan, atau minta saran perbaikan kode/desain.</p>
+  <div id="ai-chat-area" style="height:200px;overflow:auto;padding:8px;border:1px solid #ddd;background:#fafafa;"></div>
+  <form id="ai-form" style="display:flex;gap:8px;margin-top:8px;">
+    <input id="ai-input" aria-label="Masukkan pertanyaan ke AI" placeholder="Tanyakan sesuatu tentang proyek..." style="flex:1;padding:8px;" />
+    <button type="submit" style="padding:8px 12px;">Kirim</button>
+  </form>
+  <small>Catatan: untuk production, implementasikan proxy server di <code>/api/ai</code> yang memanggil LLM (mis. OpenAI) dari server.</small>
+</section>
+<script src="ai.js"></script>
+
+
+<script>
+// Simple SSE consumer example (if server supports /api/ai/stream)
+// Example usage: create EventSource via fetch streaming proxy (server uses SSE).
+function consumeStreaming(prompt, container) {
+  // We'll use fetch + EventSource simulation: call /api/ai/stream via EventSource is not supported with body in browsers.
+  // So this demo uses fetch to start streaming by polling chunked endpoint (server simulates streaming with SSE; for real production, use proper streaming support).
+  const es = new EventSource('/api/ai/stream?prompt=' + encodeURIComponent(prompt));
+  es.onmessage = function(e){ if(e.data === '[DONE]') { es.close(); } else { container.append(e.data); } };
+  es.onerror = function(){ es.close(); };
+  return es;
+}
+</script>
+
+</body>
+</html>

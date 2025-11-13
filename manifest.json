@@ -1,0 +1,15 @@
+{
+  "name": "Kisah Sukses",
+  "short_name": "KisahSukses",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff7f0",
+  "theme_color": "#ff7a00",
+  "icons": [
+    {
+      "src": "favicon-64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ]
+}

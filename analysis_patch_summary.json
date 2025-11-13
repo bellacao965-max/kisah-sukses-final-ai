@@ -1,0 +1,11 @@
+{
+  "modified": [
+    "index.html",
+    "script.js"
+  ],
+  "added": [
+    "ai.js",
+    "README.md"
+  ],
+  "notes": "Removed console.log instances and added AI chat UI + helper. Server-side /api/ai required for production."
+}

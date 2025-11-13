@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#ff7a00"/><stop offset="1" stop-color="#ff9a33"/></linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#fff7f0"/>
+  <rect x="60" y="60" width="1080" height="510" rx="24" fill="url(#g)" opacity="0.95"/>
+  <text x="120" y="220" font-family="Inter, Arial, sans-serif" font-size="56" fill="#ffffff">Kisah Sukses</text>
+  <text x="120" y="290" font-family="Inter, Arial, sans-serif" font-size="28" fill="#fff7f0">Cerita singkat yang menginspirasi</text>
+  <text x="120" y="520" font-family="Inter, Arial, sans-serif" font-size="20" fill="#ffffff">kisahsukses.app</text>
+</svg>

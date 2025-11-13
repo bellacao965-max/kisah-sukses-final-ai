@@ -1,0 +1,67 @@
+{
+  "name": "kisahsukses-pro",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --publish never"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "eslint": "^9.0.0",
+    "vitest": "^1.0.0",
+    "@testing-library/dom": "^10.0.0",
+    "electron": "^31.0.0",
+    "electron-builder": "^24.0.0"
+  },
+  "main": "electron/main.js",
+  "build": {
+    "appId": "com.kisahsukses.pro",
+    "productName": "Kisah Sukses Pro",
+    "directories": {
+      "output": "dist_electron"
+    },
+    "files": [
+      "dist/**",
+      "electron/**",
+      "server/**",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "server/",
+        "to": "server/",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utility"
+    }
+  },
+  "description": "Kisah Sukses Pro - Desktop app (Electron + Vite + Node)",
+  "author": "Tim Kisah Sukses",
+  "license": "MIT"
+}
